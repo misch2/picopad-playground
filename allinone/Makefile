@@ -1,4 +1,7 @@
-all:	pico-sdk bootloader game
+all:	apt pico-sdk bootloader game
+	@echo "\n\nEverything (bootloader + game) should now be in the $(CURDIR)/build/:"
+	@ls -al $(CURDIR)/build/
+	@echo "\n\n"
 
 apt:
 	sudo apt update
@@ -16,22 +19,13 @@ rom:
 	xxd -i rom.gb rom_full.c
 	cat rom_full.c  |sed -e 's/unsigned .*//' |sed -e 's/};//' >rom_array_content_only.c
 
-##include <pico/platform.h>
-#const unsigned char __in_flash("rom") gameRom[] = {};
-
 game: pico-sdk rom
 	(cd ../picopad-sdk/picopad-gb && cmake .)
 	(cd ../picopad-sdk/picopad-gb && cmake --build .)
 	cp ../picopad-sdk/build/PICOPAD-GB.PP2 build/
-	@echo "\n\nGame content should now be in the $(CURDIR)/build/PICOPAD-GB.PP2:"
-	@ls -al $(CURDIR)/build/
-	@echo "\n\n"
 
 bootloader: pico-sdk rom
 	(cd ../picopad-sdk/picopad-bootloader && cmake .)
 	(cd ../picopad-sdk/picopad-bootloader && cmake --build .)
 	cp ../picopad-sdk/build/pico-bootloader.uf2 build/
-	@echo "\n\nBootloader should now be in the $(CURDIR)/build/pico-bootloader.uf2:"
-	@ls -al $(CURDIR)/build/
-	@echo "\n\n"
 

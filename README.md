@@ -14,25 +14,32 @@ then run Terminal with Ubuntu-22 LTS in it. You should get the Bash prompt (`$ `
 Clone this repository there:
 
 ```bash
-$ git clone --recurse-submodules //github.com/misch2/picopad-playground
+$ git clone --recurse-submodules https://github.com/misch2/picopad-playground
 $ cd picopad-playground
+$ git checkout easymake
 ```
 
 Copy your GB ROM (.gb file) there. Replace XXX and YYY in the path with real folder names. WSL2 allows access to the Windows drives using `/mnt/X/...` syntax so for example your `C:\Users\Michal\Downloads` folder can be accessed as `/mnt/c/Users/Michal/Downloads`:
 
 ```
-cp /mnt/t/Users/XXXYourName/Downloads/YYY.gb _make/rom.gb
+cp /mnt/t/Users/XXXYourName/Downloads/YYY.gb allinone/rom.gb
 ```
 
-Compile everything using the Makefile in the `_make/` subfolder:
+Compile everything using the Makefile in the `allinone/` subfolder:
 
 ```
-$ make -C _make
+$ make -C allinone
 ```
 
-This should produce PICOPAD-GB.PP2 file in ⚠️ TODO. 
+This should produce PICOPAD-GB.PP2 and file in `allinone/build` subfolder as in this example:
 
-⚠️TODO bootloader (add howto for compilation and link to installation)
+```
+drwxr-xr-x 2 xxx yyy   4096 Jul 10 18:38 .
+drwxr-xr-x 4 xxx yyy   4096 Jul 10 19:07 ..
+-rwxr-xr-x 1 xxx yyy 131120 Jul 10 19:12 PICOPAD-GB.PP2
+-rw-r--r-- 1 xxx yyy 198656 Jul 10 19:12 pico-bootloader.uf2
+```
+
 
 
 
