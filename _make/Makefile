@@ -22,10 +22,16 @@ rom:
 game: pico-sdk rom
 	(cd ../picopad-sdk/picopad-gb && cmake .)
 	(cd ../picopad-sdk/picopad-gb && cmake --build .)
-	@echo "\n\nGame content should now be in the ./picopad-sdk/build/PICOPAD-GB.PP2\n\n"
+	cp ../picopad-sdk/build/PICOPAD-GB.PP2 build/
+	@echo "\n\nGame content should now be in the $(CURDIR)/build/PICOPAD-GB.PP2:"
+	@ls -al $(CURDIR)/build/
+	@echo "\n\n"
 
 bootloader: pico-sdk rom
 	(cd ../picopad-sdk/picopad-bootloader && cmake .)
 	(cd ../picopad-sdk/picopad-bootloader && cmake --build .)
-	@echo "\n\nBootloader should now be in the ./picopad-sdk/build/pico-bootloader.uf2\n\n"
+	cp ../picopad-sdk/build/pico-bootloader.uf2 build/
+	@echo "\n\nBootloader should now be in the $(CURDIR)/build/pico-bootloader.uf2:"
+	@ls -al $(CURDIR)/build/
+	@echo "\n\n"
 
