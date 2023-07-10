@@ -15,7 +15,7 @@ pico-sdk:
 	if [ ! -d _tmp/pico-sdk ]; then git clone https://github.com/raspberrypi/pico-sdk.git _tmp/pico-sdk; (cd _tmp/pico-sdk && git submodule update --init); fi
 
 rom:
-	@if [ ! -f rom.gb ]; then echo "\n\nCopy your ROM file (<name>.gb) into the _make/ subfolder as 'rom.gb' first!\n\n"; /bin/false; fi
+	@if [ ! -f rom.gb ]; then echo "\n\nCopy your ROM file (<name>.gb) into the allinone/ subfolder as 'rom.gb' first!\n\n"; /bin/false; fi
 	xxd -i rom.gb rom_full.c
 	cat rom_full.c  |sed -e 's/unsigned .*//' |sed -e 's/};//' >rom_array_content_only.c
 
