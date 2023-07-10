@@ -1,4 +1,4 @@
-all:	pico-sdk game
+all:	pico-sdk bootloader game
 
 apt:
 	sudo apt update
@@ -23,4 +23,9 @@ game: pico-sdk rom
 	(cd ../picopad-sdk/picopad-gb && cmake .)
 	(cd ../picopad-sdk/picopad-gb && cmake --build .)
 	@echo "\n\nGame content should now be in the ./picopad-sdk/build/PICOPAD-GB.PP2\n\n"
+
+bootloader: pico-sdk rom
+	(cd ../picopad-sdk/picopad-bootloader && cmake .)
+	(cd ../picopad-sdk/picopad-bootloader && cmake --build .)
+	@echo "\n\nBootloader should now be in the ./picopad-sdk/build/pico-bootloader.uf2\n\n"
 
