@@ -40,11 +40,15 @@ drwxr-xr-x 4 xxx yyy   4096 Jul 10 19:07 ..
 -rw-r--r-- 1 xxx yyy 198656 Jul 10 19:12 pico-bootloader.uf2
 ```
 
+Start the Picopad in BOOTSEL mode and copy the `pico-bootloader.uf2` to it's USB drive (see https://github.com/Pajenicko/Picopad/blob/main/sdk/README.MD). It should then automatically reboot and start the new bootloader.
 
+Copy the PICOPAD-GB.PP2 under any name (keep the .PP2 extension though) to the SD card. 
 
+Enjoy.
 
+---
 
-
+# Original documentation:
 
 
 ## PyPicoPadImg Generator
