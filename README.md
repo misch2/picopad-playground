@@ -1,10 +1,55 @@
 # Picopad Playground
 
-**Clone repository**
+This is a slightly modified https://github.com/tvecera/picopad-playground repository with some minor tweaks for easy and automated compilation under Ubuntu 22 WSL for Windows. Uses information from @kevinar user on Twitter: https://twitter.com/kevinarcz/status/1678023837957365761?s=20.
+
+## Howto:
+
+Install Ubuntu 22 as WSL:
+
+```cmd
+C:\> wsl --install Ubuntu-22.04 
+```
+
+then run Terminal with Ubuntu-22 LTS in it. You should get the Bash prompt (`$ `). 
+Clone this repository there:
 
 ```bash
-  git clone --recurse-submodules https://github.com/tvecera/picopad-playground
+$ git clone --recurse-submodules https://github.com/misch2/picopad-playground
+$ cd picopad-playground
+$ git checkout easymake
 ```
+
+Copy your GB ROM (.gb file) there. Replace XXX and YYY in the path with real folder names. WSL2 allows access to the Windows drives using `/mnt/X/...` syntax so for example your `C:\Users\Michal\Downloads` folder can be accessed as `/mnt/c/Users/Michal/Downloads`:
+
+```
+cp /mnt/t/Users/XXXYourName/Downloads/YYY.gb allinone/rom.gb
+```
+
+Compile everything using the Makefile in the `allinone/` subfolder:
+
+```
+$ make -C allinone
+```
+
+This should produce PICOPAD-GB.PP2 and file in `allinone/build` subfolder as in this example:
+
+```
+drwxr-xr-x 2 xxx yyy   4096 Jul 10 18:38 .
+drwxr-xr-x 4 xxx yyy   4096 Jul 10 19:07 ..
+-rwxr-xr-x 1 xxx yyy 131120 Jul 10 19:12 PICOPAD-GB.PP2
+-rw-r--r-- 1 xxx yyy 198656 Jul 10 19:12 pico-bootloader.uf2
+```
+
+Start the Picopad in BOOTSEL mode and copy the `pico-bootloader.uf2` to it's USB drive (see https://github.com/Pajenicko/Picopad/blob/main/sdk/README.MD). It should then automatically reboot and start the new bootloader.
+
+Copy the PICOPAD-GB.PP2 under any name (keep the .PP2 extension though) to the SD card. 
+
+Enjoy.
+
+---
+
+# Original documentation:
+
 
 ## PyPicoPadImg Generator
 
